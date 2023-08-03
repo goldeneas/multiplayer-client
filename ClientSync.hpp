@@ -1,6 +1,6 @@
 #pragma once
 #include "IEventListener.hpp"
 
-class NewClientListener : IEventListener {
+class ClientSync : public IEventListener {
 	void handle(S2CNewClient e) override;
 };

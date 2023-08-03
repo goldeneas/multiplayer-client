@@ -5,23 +5,18 @@
 PlayScreen::PlayScreen(ScreenStack& screenStack, Screen::Context& context)
 	: Screen(screenStack, context) {
 
-	auto& textures = getContext().textures;
-	auto& entities = getContext().entities;
-
-	textures.load(Texture::Player, "player.png");
-
-	EntityBuilder::player(entities, textures.get(Texture::Player));
+	EntityBuilder::player();
 }
 
 void PlayScreen::update(float dt) {
-	auto& entities = getContext().entities;
+	auto& entities = context.entities;
 
 	Systems::controller(entities);
 	Systems::move(entities, dt);
 }
 
 void PlayScreen::draw(sf::RenderWindow& window) {
-	auto& entities = getContext().entities;
+	auto& entities = context.entities;
 
 	Systems::draw(entities, window);
 }

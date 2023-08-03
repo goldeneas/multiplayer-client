@@ -1,8 +1,14 @@
 #include "EntityBuilder.hpp"
+#include <entt.hpp>
+#include "Game.hpp"
 #include "Components.hpp"
 
-void EntityBuilder::player(entt::registry& entities, sf::Texture& texture) {
+void EntityBuilder::player() {
+	auto& entities = Game::getEntities();
+	auto& textures = Game::getTextures();
+
 	const auto entity = entities.create();
+	auto& texture = textures.get(Texture::PLAYER);
 
 	entities.emplace<CPosition>(entity);
 	entities.emplace<CVelocity>(entity);
@@ -10,8 +16,12 @@ void EntityBuilder::player(entt::registry& entities, sf::Texture& texture) {
 	entities.emplace<CDraw>(entity, texture);
 }
 
-void EntityBuilder::client(entt::registry& entities, sf::Uint32 id, sf::Texture& texture) {
+void EntityBuilder::client(ClientConnection::ID id) {
+	auto& entities = Game::getEntities();
+	auto& textures = Game::getTextures();
+
 	const auto entity = entities.create();
+	auto& texture = textures.get(Texture::CLIENT);
 
 	entities.emplace<CNetworkClient>(entity, id);
 	entities.emplace<CPosition>(entity);

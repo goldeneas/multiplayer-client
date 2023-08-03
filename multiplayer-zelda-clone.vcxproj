@@ -140,7 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="NewClientListener.cpp" />
+    <ClCompile Include="ClientSync.cpp" />
     <ClCompile Include="EntityBuilder.cpp" />
     <ClCompile Include="EventBus.cpp" />
     <ClCompile Include="NetworkClient.cpp" />
@@ -156,7 +156,8 @@
     <ClCompile Include="UIRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="NewClientListener.hpp" />
+    <ClInclude Include="ClientConnection.hpp" />
+    <ClInclude Include="ClientSync.hpp" />
     <ClInclude Include="EntityBuilder.hpp" />
     <ClInclude Include="NetworkClient.hpp" />
     <ClInclude Include="Components.hpp" />

@@ -5,6 +5,7 @@
 #include "PacketProcessor.hpp"
 
 namespace NetworkClient {
+	ClientConnection::ID id = -1;
 	constexpr int HEARTBEAT_INTERVAL = 2;
 
 	sf::TcpSocket socket;
@@ -29,9 +30,6 @@ void NetworkClient::poll(float dt) {
 }
 
 void NetworkClient::processIncomingPackets() {
-	//if(!selector.isReady(socket))
-	//	return;
-
 	sf::Packet p;
 	switch(socket.receive(p)) {
 		case sf::Socket::Done: {
@@ -97,14 +95,6 @@ void NetworkClient::send(sf::Packet& p) {
 	socket.send(p);
 }
 
-bool NetworkClient::isConnected() {
-	return getStatus() == sf::Socket::Done;
-}
-
-sf::Socket::Status NetworkClient::getStatus() {
-	return status;
-}
-
 void NetworkClient::heartbeat(float dt) {
 	timeSinceLastHeartbeat += dt;
 
@@ -114,4 +104,19 @@ void NetworkClient::heartbeat(float dt) {
 
 		timeSinceLastHeartbeat = 0;
 	}
+}
+
+bool NetworkClient::isConnected() {
+	return getStatus() == sf::Socket::Done;
+}
+
+sf::Socket::Status NetworkClient::getStatus() {
+	return status;
+}
+
+ClientConnection::ID NetworkClient::getId() {
+	if(id == -1)
+		spdlog::error("Tried getting ID of our client, but it hasn't been setup yet!");
+
+	return id;
 }

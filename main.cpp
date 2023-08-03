@@ -14,8 +14,7 @@ int main() {
     ImGui::SFML::Init(window);
 
     // start
-    Game game;
-    game.start();
+    Game::start();
     
     // loop
     sf::Clock deltaClock;
@@ -36,11 +35,11 @@ int main() {
         // update
         ImGui::SFML::Update(window, dt);
         NetworkClient::poll(dt.asSeconds());
-        game.update(dt.asSeconds());
+        Game::update(dt.asSeconds());
 
         // draw
         window.clear();
-        game.draw(window);
+        Game::draw(window);
         ImGui::SFML::Render(window);
         window.display();
     }

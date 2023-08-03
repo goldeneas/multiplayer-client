@@ -28,7 +28,6 @@ protected:
 	Screen::Context& context;
 protected:
 	ScreenStack& getScreenStack() { return screenStack; }
-	Screen::Context& getContext() { return context;		}
 public:
 	virtual ~Screen() {};
 	Screen(ScreenStack& screenStack, Screen::Context& context)

@@ -1,24 +1,17 @@
 #pragma once
+#include <entt.hpp>
 #include <SFML/Network/TcpSocket.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "Screen.hpp"
-#include "ScreenStack.hpp"
 #include "UIRenderer.hpp"
+#include "ScreenStack.hpp"
 
-class Game {
-private:
-	sf::TcpSocket socket;
-
-	ScreenStack screens;
-	Screen::Context context;
-
-	UIRenderer gui;
-public:
-	Game()
-		: screens(context) {}
-
+namespace Game {
 	void start();
 	void update(float dt);
 	void draw(sf::RenderWindow& window);
 	void stop();
+
+	entt::registry& getEntities();
+	ResourceHolder<Texture, sf::Texture>& getTextures();
 };

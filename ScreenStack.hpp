@@ -82,7 +82,7 @@ public:
 	/*
 		gets number of active screens
     */
-	int size() { return activeScreens.size(); }
+	size_t size() { return activeScreens.size(); }
 
 	/*
 		starts a new screen

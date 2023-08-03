@@ -81,7 +81,7 @@
     <ClCompile Include="ScreenStack.cpp">
       <Filter>Source Files\screens</Filter>
     </ClCompile>
-    <ClCompile Include="NewClientListener.cpp">
+    <ClCompile Include="ClientSync.cpp">
       <Filter>Source Files\events\listeners</Filter>
     </ClCompile>
     <ClCompile Include="PacketProcessor.cpp">
@@ -143,7 +143,7 @@
     <ClInclude Include="TitleScreen.hpp">
       <Filter>Header Files\screens</Filter>
     </ClInclude>
-    <ClInclude Include="NewClientListener.hpp">
+    <ClInclude Include="ClientSync.hpp">
       <Filter>Header Files\events\listeners</Filter>
     </ClInclude>
     <ClInclude Include="PacketBuilder.hpp">
@@ -151,6 +151,9 @@
     </ClInclude>
     <ClInclude Include="PacketProcessor.hpp">
       <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientConnection.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,5 +1,7 @@
 #include "Systems.hpp"
 #include "Components.hpp"
+#include "NetworkClient.hpp"
+#include "PacketBuilder.hpp"
 
 void Systems::move(entt::registry& entities, float dt) {
 	const auto& movables = entities.view<CPosition, CVelocity>();
@@ -24,6 +26,9 @@ void Systems::move(entt::registry& entities, float dt) {
 
 		position.y += velocity.speed * velocity.verticalAxis * dt;
 		position.x += velocity.speed * velocity.horizontalAxis * dt;
+
+		//sf::Packet p = PacketBuilder::build(PacketType::C2S_MOVE_REQUEST, );
+		//NetworkClient::send();
 	});
 }
 
