@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Config.hpp>
 
-namespace ClientConnection {
+namespace Client {
 	using ID = sf::Int32;
 }

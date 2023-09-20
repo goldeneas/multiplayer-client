@@ -13,7 +13,7 @@ class ResourceHolder {
 private:
 	/*
 		store link between each unique identifier to a resource
-		ex. Texture::PLAYER -> player.png
+		ex. TextureType::PLAYER -> player.png
 	*/
 	std::unordered_map<Identifier, std::unique_ptr<Resource>> resources;
 public:

@@ -1,15 +1,16 @@
 #pragma once
 #include <SFML/Config.hpp>
 #include <SFML/Network.hpp>
-#include "ClientConnection.hpp"
+#include "Client.hpp"
 
 struct S2CNewClient {
-	ClientConnection::ID id = -1;
-	S2CNewClient(sf::Packet& p) { p >> id; }
+	Client::ID id = -1;
+	explicit S2CNewClient(sf::Packet& p) { p >> id; }
 };
 
 struct S2CPacketPreprocess {
 	sf::Packet& p;
+    explicit S2CPacketPreprocess(sf::Packet& p) : p(p) {}
 };
 
 struct C2SConnection {};

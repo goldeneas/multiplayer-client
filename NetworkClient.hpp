@@ -14,6 +14,6 @@ namespace NetworkClient {
 	void processIncomingPackets();
 
 	bool isConnected();
-	ClientConnection::ID getId();
+	Client::ID getId();
 	sf::Socket::Status getStatus();
 }

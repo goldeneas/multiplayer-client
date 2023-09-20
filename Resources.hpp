@@ -1,6 +1,6 @@
 #pragma once
 
-enum class Texture {
+enum class TextureType {
 	PLAYER,
 	CLIENT
 };

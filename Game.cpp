@@ -6,9 +6,7 @@
 #include "ClientSync.hpp"
 
 namespace Game {
-	sf::TcpSocket socket;
-
-	Screen::Context context;
+    Screen::Context context;
 	ScreenStack screens(context);
 
 	UIRenderer gui;
@@ -24,8 +22,8 @@ void Game::start() {
 	gui.add<NetworkWidget>();
 
 	auto& textures = context.textures;
-	textures.load(Texture::PLAYER, "player.png");
-	textures.load(Texture::CLIENT, "client.png");
+	textures.load(TextureType::PLAYER, "player.png");
+	textures.load(TextureType::CLIENT, "client.png");
 }
 
 void Game::update(float dt) {
@@ -46,6 +44,6 @@ entt::registry& Game::getEntities() {
 	return context.entities;
 }
 
-ResourceHolder<Texture, sf::Texture>& Game::getTextures() {
+ResourceHolder<TextureType, sf::Texture>& Game::getTextures() {
 	return context.textures;
 }

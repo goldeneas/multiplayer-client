@@ -1,7 +1,7 @@
 #pragma once
-#include "ClientConnection.hpp"
+#include "Client.hpp"
 
 namespace EntityBuilder {
 	void player();
-	void client(ClientConnection::ID id);
+	void client(Client::ID id);
 }

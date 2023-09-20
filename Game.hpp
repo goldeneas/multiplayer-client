@@ -1,5 +1,5 @@
 #pragma once
-#include <entt.hpp>
+#include <entt/entt.hpp>
 #include <SFML/Network/TcpSocket.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "Screen.hpp"
@@ -13,5 +13,5 @@ namespace Game {
 	void stop();
 
 	entt::registry& getEntities();
-	ResourceHolder<Texture, sf::Texture>& getTextures();
+	ResourceHolder<TextureType, sf::Texture>& getTextures();
 };

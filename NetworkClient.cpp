@@ -5,7 +5,7 @@
 #include "PacketProcessor.hpp"
 
 namespace NetworkClient {
-	ClientConnection::ID id = -1;
+	Client::ID id = -1;
 	constexpr int HEARTBEAT_INTERVAL = 2;
 
 	sf::TcpSocket socket;
@@ -114,7 +114,7 @@ sf::Socket::Status NetworkClient::getStatus() {
 	return status;
 }
 
-ClientConnection::ID NetworkClient::getId() {
+Client::ID NetworkClient::getId() {
 	if(id == -1)
 		spdlog::error("Tried getting ID of our client, but it hasn't been setup yet!");
 

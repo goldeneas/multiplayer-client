@@ -1,6 +1,6 @@
 #pragma once
 #include <list>
-#include <entt.hpp>
+#include <entt/entt.hpp>
 #include <SFML/Graphics.hpp>
 #include "Resources.hpp"
 #include "ResourceHolder.hpp"
@@ -21,7 +21,7 @@ public:
 	*/
 	struct Context {
 		entt::registry entities;
-		ResourceHolder<Texture, sf::Texture> textures;
+		ResourceHolder<TextureType, sf::Texture> textures;
 	};
 protected:
 	ScreenStack& screenStack;

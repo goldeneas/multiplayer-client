@@ -1,5 +1,5 @@
 #include "EntityBuilder.hpp"
-#include <entt.hpp>
+#include <entt/entt.hpp>
 #include "Game.hpp"
 #include "Components.hpp"
 
@@ -8,7 +8,7 @@ void EntityBuilder::player() {
 	auto& textures = Game::getTextures();
 
 	const auto entity = entities.create();
-	auto& texture = textures.get(Texture::PLAYER);
+	auto& texture = textures.get(TextureType::PLAYER);
 
 	entities.emplace<CPosition>(entity);
 	entities.emplace<CVelocity>(entity);
@@ -16,12 +16,12 @@ void EntityBuilder::player() {
 	entities.emplace<CDraw>(entity, texture);
 }
 
-void EntityBuilder::client(ClientConnection::ID id) {
+void EntityBuilder::client(Client::ID id) {
 	auto& entities = Game::getEntities();
 	auto& textures = Game::getTextures();
 
 	const auto entity = entities.create();
-	auto& texture = textures.get(Texture::CLIENT);
+	auto& texture = textures.get(TextureType::CLIENT);
 
 	entities.emplace<CNetworkClient>(entity, id);
 	entities.emplace<CPosition>(entity);
