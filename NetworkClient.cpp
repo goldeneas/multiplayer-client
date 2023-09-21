@@ -5,20 +5,18 @@
 #include "PacketProcessor.hpp"
 
 namespace NetworkClient {
-	Client::ID id = -1;
-	constexpr int HEARTBEAT_INTERVAL = 2;
+    constexpr int HEARTBEAT_INTERVAL = 2;
 
 	sf::TcpSocket socket;
 	sf::SocketSelector selector;
 	sf::TcpSocket::Status status = sf::Socket::Disconnected;
 
-	float timeSinceLastHeartbeat = 0;
+    // TODO: get this id from server
+    Client::ID id = -1;
+    float timeSinceLastHeartbeat = 0;
 }
 
 // TODO: time to multithread :)
-// calls to selector wait also lock our rendering thread
-// FPS are capped at 144fps currently, but this isn't such a good option
-// it will take a while, and errors, and locks
 void NetworkClient::poll(float dt) {
 	if(!isConnected())
 		return;

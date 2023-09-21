@@ -32,7 +32,6 @@ void Game::update(float dt) {
 
 void Game::draw(sf::RenderWindow& window) {
 	screens.draw(window);
-
 	gui.draw();
 }
 

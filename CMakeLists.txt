@@ -75,6 +75,7 @@ add_executable(multiplayer_client
         ${IMGUI_ADDITIONAL_DIR}/imgui-SFML.h
         ${IMGUI_ADDITIONAL_DIR}/imgui_stdlib.h
         ${IMGUI_ADDITIONAL_DIR}/imgui_stdlib.cpp
+        PacketListener.h
 )
 
 target_link_libraries(multiplayer_client
