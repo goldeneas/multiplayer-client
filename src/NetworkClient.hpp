@@ -3,17 +3,18 @@
 #include "SFML/Network.hpp"
 #include "EventBus.hpp"
 #include "PacketType.hpp"
+#include "PacketWrappers.h"
 
 namespace NetworkClient {
-	void disconnect();
-	void send(sf::Packet& packet);
-	void connect(const std::string& address, int port);
-	void poll(float dt);
+	void poll();
+	void send(PacketWrapper& p, sf::IpAddress address, int port);
 
-	void heartbeat(float dt);
+	void shutdown();
 	void processIncomingPackets();
+	void handshake(const std::string& address, int port);
 
-	bool isConnected();
+	bool isReady();
+    bool isHandshakeDone();
 	Client::ID getId();
 	sf::Socket::Status getStatus();
 }

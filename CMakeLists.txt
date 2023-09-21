@@ -28,43 +28,41 @@ link_directories(
 )
 
 add_executable(multiplayer_client
-        Client.hpp
-        ClientSync.cpp
-        ClientSync.hpp
-        Components.hpp
-        EntityBuilder.cpp
-        EntityBuilder.hpp
-        EventBus.cpp
-        EventBus.hpp
-        Events.hpp
-        Game.cpp
-        Game.hpp
-        IEventListener.hpp
-        IWidget.hpp
-        main.cpp
-        NetworkClient.cpp
-        NetworkClient.hpp
-        NetworkWidget.cpp
-        NetworkWidget.hpp
-        PacketBuilder.hpp
-        PacketProcessor.cpp
-        PacketProcessor.hpp
-        PacketType.cpp
-        PacketType.hpp
-        PingListener.hpp
-        PlayScreen.cpp
-        PlayScreen.hpp
-        ResourceHolder.hpp
-        Resources.hpp
-        Screen.hpp
-        ScreenStack.cpp
-        ScreenStack.hpp
-        Systems.cpp
-        Systems.hpp
-        TitleScreen.cpp
-        TitleScreen.hpp
-        UIRenderer.cpp
-        UIRenderer.hpp
+        src/Client.hpp
+        src/ClientSync.cpp
+        src/ClientSync.hpp
+        src/Components.hpp
+        src/EntityBuilder.cpp
+        src/EntityBuilder.hpp
+        src/EventBus.cpp
+        src/EventBus.hpp
+        src/Events.hpp
+        src/Game.cpp
+        src/Game.hpp
+        src/IEventListener.hpp
+        src/IWidget.hpp
+        src/main.cpp
+        src/NetworkClient.cpp
+        src/NetworkClient.hpp
+        src/NetworkWidget.cpp
+        src/NetworkWidget.hpp
+        src/PacketProcessor.cpp
+        src/PacketProcessor.hpp
+        src/PacketType.cpp
+        src/PacketType.hpp
+        src/PlayScreen.cpp
+        src/PlayScreen.hpp
+        src/ResourceHolder.hpp
+        src/Resources.hpp
+        src/Screen.hpp
+        src/ScreenStack.cpp
+        src/ScreenStack.hpp
+        src/Systems.cpp
+        src/Systems.hpp
+        src/TitleScreen.cpp
+        src/TitleScreen.hpp
+        src/UIRenderer.cpp
+        src/UIRenderer.hpp
         ${IMGUI_DIR}/imgui.cpp
         ${IMGUI_DIR}/imgui_draw.cpp
         ${IMGUI_DIR}/imgui_tables.cpp
@@ -75,7 +73,9 @@ add_executable(multiplayer_client
         ${IMGUI_ADDITIONAL_DIR}/imgui-SFML.h
         ${IMGUI_ADDITIONAL_DIR}/imgui_stdlib.h
         ${IMGUI_ADDITIONAL_DIR}/imgui_stdlib.cpp
-        PacketListener.h
+        src/PacketWrappers.h
+        src/PacketWrappers.h
+        src/PacketWrappers.h
 )
 
 target_link_libraries(multiplayer_client

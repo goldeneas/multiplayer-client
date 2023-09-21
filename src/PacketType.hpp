@@ -3,7 +3,7 @@
 
 // TODO: make this shared
 enum class PacketType {
-	C2S_HEARTBEAT, S2C_NEW_CLIENT, C2S_MOVE_REQUEST, S2C_MOVE_RESULT, C2S_WHOAMI
+	UNDEFINED, C2S_HANDSHAKE, S2C_HANDSHAKE, S2C_PLAYERJOIN, S2C_PLAYERLEAVE
 };
 
 sf::Packet& operator>>(sf::Packet& packet, PacketType&& packetType);

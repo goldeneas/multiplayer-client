@@ -9,7 +9,7 @@ TitleScreen::TitleScreen(ScreenStack& screenStack, Screen::Context& context)
 }
 
 void TitleScreen::update(float dt) {
-	if(NetworkClient::isConnected())
+	if(NetworkClient::isHandshakeDone())
 		screenStack.switchLastScreenTo(Screen::Type::PLAY);
 }
 
@@ -20,7 +20,7 @@ void TitleScreen::draw(sf::RenderWindow& window) {
 	ImGui::Begin("##TitleScreenMenu", nullptr, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoDecoration);
 
 	if(ImGui::Button("Play", ImVec2(200, 30))) {
-		NetworkClient::connect("localhost", 39964);
+		NetworkClient::handshake("localhost", 39964);
 	}
 
 	ImGui::Spacing();

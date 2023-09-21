@@ -30,7 +30,7 @@ int main() {
 
         // update
         ImGui::SFML::Update(window, dt);
-        NetworkClient::poll(dt.asSeconds());
+        NetworkClient::poll();
         Game::update(dt.asSeconds());
 
         // draw

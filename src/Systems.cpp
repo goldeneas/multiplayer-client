@@ -1,7 +1,6 @@
 #include "Systems.hpp"
 #include "Components.hpp"
 #include "NetworkClient.hpp"
-#include "PacketBuilder.hpp"
 
 void Systems::move(entt::registry& entities, float dt) {
 	const auto& movables = entities.view<CPosition, CVelocity>();

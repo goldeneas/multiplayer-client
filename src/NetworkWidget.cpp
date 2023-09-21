@@ -13,11 +13,7 @@ void NetworkWidget::draw() {
 	ImGui::Text("Port");
 	ImGui::InputInt("##portInput", &portInput, 0, 0);
 	ImGui::Separator();
-	ImGui::Text("Connection established: %s", NetworkClient::isConnected() ? "true" : "false");
-
-	if(NetworkClient::getStatus() == sf::Socket::Error) {
-		ImGui::Text("Could not connect to server!");
-	}
+	ImGui::Text("Connection established: %s", NetworkClient::isHandshakeDone() ? "true" : "false");
 
 	ImGui::End();
 }
