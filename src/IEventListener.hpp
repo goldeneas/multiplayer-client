@@ -13,5 +13,5 @@ public:
     virtual void handle(ClientAccepted e) {};
     virtual void handle(PlayerJoin e) {};
     virtual void handle(PlayerLeave e) {};
-	virtual void handle(OutgoingPacketPreprocess e) {};
+	virtual void handle(IncomingPacketPreprocess e) {};
 };

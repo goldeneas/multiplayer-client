@@ -4,8 +4,8 @@
 #include "Client.hpp"
 
 struct ClientAccepted {
-    Client::ID id;
-    explicit ClientAccepted(Client::ID id) : id(id) {};
+    Client::ID assignedId;
+    explicit ClientAccepted(Client::ID assignedId) : assignedId(assignedId) {};
 };
 
 struct ClientRefused {
@@ -22,8 +22,8 @@ struct PlayerLeave {
     explicit PlayerLeave(Client::ID id) : id(id) {};
 };
 
-struct OutgoingPacketPreprocess {
+struct IncomingPacketPreprocess {
     sf::Packet& p;
 
-    explicit OutgoingPacketPreprocess(sf::Packet& p) : p(p) {};
+    explicit IncomingPacketPreprocess(sf::Packet& p) : p(p) {};
 };

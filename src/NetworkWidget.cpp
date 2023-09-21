@@ -13,7 +13,8 @@ void NetworkWidget::draw() {
 	ImGui::Text("Port");
 	ImGui::InputInt("##portInput", &portInput, 0, 0);
 	ImGui::Separator();
-	ImGui::Text("Connection established: %s", NetworkClient::isHandshakeDone() ? "true" : "false");
+	ImGui::Text("Connection established: %s",
+                NetworkClient::getHandshakeStatus() == HandshakeStatus::ACCEPTED ? "true" : "false");
 
 	ImGui::End();
 }

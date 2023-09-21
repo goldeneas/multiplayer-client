@@ -29,8 +29,8 @@ link_directories(
 
 add_executable(multiplayer_client
         src/Client.hpp
-        src/ClientSync.cpp
-        src/ClientSync.hpp
+        src/listeners/ClientSync.cpp
+        src/listeners/ClientSync.hpp
         src/Components.hpp
         src/EntityBuilder.cpp
         src/EntityBuilder.hpp
@@ -73,9 +73,11 @@ add_executable(multiplayer_client
         ${IMGUI_ADDITIONAL_DIR}/imgui-SFML.h
         ${IMGUI_ADDITIONAL_DIR}/imgui_stdlib.h
         ${IMGUI_ADDITIONAL_DIR}/imgui_stdlib.cpp
-        src/PacketWrappers.h
-        src/PacketWrappers.h
-        src/PacketWrappers.h
+        src/PacketWrappers.hpp
+        src/PacketWrappers.hpp
+        src/PacketWrappers.hpp
+        src/listeners/HandshakeListener.cpp
+        src/listeners/HandshakeListener.hpp
 )
 
 target_link_libraries(multiplayer_client

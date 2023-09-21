@@ -3,7 +3,7 @@
 #include "PlayScreen.hpp"
 #include "TitleScreen.hpp"
 #include "NetworkWidget.hpp"
-#include "ClientSync.hpp"
+#include "listeners/ClientSync.hpp"
 
 namespace Game {
     Screen::Context context;

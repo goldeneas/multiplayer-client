@@ -9,7 +9,7 @@ TitleScreen::TitleScreen(ScreenStack& screenStack, Screen::Context& context)
 }
 
 void TitleScreen::update(float dt) {
-	if(NetworkClient::isHandshakeDone())
+	if(NetworkClient::getHandshakeStatus() == HandshakeStatus::ACCEPTED)
 		screenStack.switchLastScreenTo(Screen::Type::PLAY);
 }
 

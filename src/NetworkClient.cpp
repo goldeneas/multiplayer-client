@@ -14,11 +14,11 @@ namespace NetworkClient {
     sf::IpAddress remoteAddress;
 
     Client::ID id = -1;
-    bool isHandshakeSuccessful = false;
+    HandshakeStatus handshakeStatus = HandshakeStatus::IDLE;
 }
 
 void NetworkClient::poll() {
-	if(!isReady())
+	if(!isSetup())
 		return;
 
     processIncomingPackets();
@@ -41,7 +41,7 @@ void NetworkClient::processIncomingPackets() {
 
 	switch(receiveStatus) {
 		case sf::Socket::Done: {
-			EventBus::emit<OutgoingPacketPreprocess>(p);
+			EventBus::emit<IncomingPacketPreprocess>(p);
 			PacketType t = PacketProcessor::process(p);
 			spdlog::info("Server sent packet [TYPE: {}]", static_cast<int>(t));
 			break;
@@ -59,8 +59,9 @@ void NetworkClient::processIncomingPackets() {
 }
 
 void NetworkClient::handshake(const std::string& address, int port) {
-    if(isHandshakeDone()) {
-        spdlog::warn("Tried handshaking server, but we have already completed our handshake!");
+    HandshakeStatus currentStatus = getHandshakeStatus();
+    if(currentStatus == HandshakeStatus::ACCEPTED ||  currentStatus == HandshakeStatus::WAITING) {
+        spdlog::warn("Tried handshaking server, but we are still talking with the it!");
         return;
     }
 
@@ -70,9 +71,7 @@ void NetworkClient::handshake(const std::string& address, int port) {
     localAddress = sf::IpAddress::getLocalAddress();
 
 	if(status != sf::Socket::Status::Done) {
-        localPort = 0;
-        localAddress = "";
-
+        reset();
 		spdlog::info("Could not bind socket to {}!", localPort);
 		return;
 	}
@@ -84,12 +83,13 @@ void NetworkClient::handshake(const std::string& address, int port) {
 
     remotePort = port;
     remoteAddress = address;
+    handshakeStatus = HandshakeStatus::WAITING;
 
     spdlog::info("Trying to handshake with server at {}:{}...", address, port);
 }
 
 void NetworkClient::send(PacketWrapper& packet, sf::IpAddress address, int port) {
-	if(!isReady()) {
+	if(!isSetup()) {
 		spdlog::warn("Tried sending packet to server, but our client is not ready yet!");
 		return;
 	}
@@ -101,27 +101,44 @@ void NetworkClient::send(PacketWrapper& packet, sf::IpAddress address, int port)
 }
 
 void NetworkClient::shutdown() {
-	if(!isReady()) {
-		spdlog::error("Tried shutting down client, but socket is not ready yet!");
+	if(getHandshakeStatus() != HandshakeStatus::ACCEPTED) {
+		spdlog::error("Tried shutting down client, but server hasn't accepted us yet!");
 		return;
 	}
 
     // todo: tell server that we have left
 
-    status = sf::Socket::NotReady;
+    reset();
     spdlog::info("Client has been shutdown.");
 }
 
-bool NetworkClient::isHandshakeDone() {
-    return isHandshakeSuccessful;
+void NetworkClient::reset() {
+    localPort = 0;
+    localAddress = "";
+
+    status = sf::Socket::NotReady;
+    handshakeStatus = HandshakeStatus::IDLE;
 }
 
-bool NetworkClient::isReady() {
+void NetworkClient::setHandshakeStatus(HandshakeStatus s) {
+    handshakeStatus = s;
+}
+
+HandshakeStatus NetworkClient::getHandshakeStatus() {
+    return handshakeStatus;
+}
+
+bool NetworkClient::isSetup() {
     return status == sf::Socket::Status::Done;
 }
 
-sf::Socket::Status NetworkClient::getStatus() {
-	return status;
+void NetworkClient::setId(Client::ID assignedId) {
+    if(getHandshakeStatus() == HandshakeStatus::ACCEPTED) {
+        spdlog::error("Tried setting client's id while we've already been accepted!");
+        return;
+    }
+
+    id = assignedId;
 }
 
 Client::ID NetworkClient::getId() {
