@@ -61,7 +61,7 @@ void NetworkClient::processIncomingPackets() {
 void NetworkClient::handshake(const std::string& address, int port) {
     HandshakeStatus currentStatus = getHandshakeStatus();
     if(currentStatus == HandshakeStatus::ACCEPTED ||  currentStatus == HandshakeStatus::WAITING) {
-        spdlog::warn("Tried handshaking server, but we are still talking with the it!");
+        spdlog::warn("Tried handshaking server, but we are still talking with it!");
         return;
     }
 

@@ -12,7 +12,7 @@ struct PacketWrapper {
 struct C2SHandshake : public PacketWrapper {
     PacketType type = PacketType::C2S_HANDSHAKE;
 
-    int clientPort{};
+    unsigned short clientPort{};
     std::string clientAddress{};
 
     sf::Packet build() override {
