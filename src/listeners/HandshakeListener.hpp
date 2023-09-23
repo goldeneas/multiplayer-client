@@ -1,6 +1,6 @@
 #pragma once
-#include "../Events.hpp"
-#include "../IEventListener.hpp"
+#include "Events.hpp"
+#include "IEventListener.hpp"
 
 class HandshakeListener : public IEventListener {
 public:

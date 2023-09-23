@@ -1,6 +1,6 @@
 #include "HandshakeListener.hpp"
 #include <spdlog/spdlog.h>
-#include "../NetworkClient.hpp"
+#include "NetworkClient.hpp"
 
 void HandshakeListener::handle(ClientAccepted e) {
     if(NetworkClient::getHandshakeStatus() != HandshakeStatus::WAITING) {

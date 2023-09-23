@@ -13,6 +13,7 @@ find_library(SPDLOG_LIBRARY spdlog)
 find_library(SFML_LIBRARY sfml)
 
 include_directories(
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
         /opt/homebrew/Cellar/sfml/2.6.0/include
         /opt/homebrew/Cellar/spdlog/1.12.0/include
         /opt/homebrew/Cellar/entt/3.12.2/include
