@@ -11,7 +11,7 @@ namespace Game {
 	ScreenStack screens(context);
 
 	UIRenderer gui;
-}s
+}
 
 void Game::start() {
     EventBus::registerListener<ClientSync>();

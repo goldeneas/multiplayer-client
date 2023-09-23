@@ -18,14 +18,11 @@ namespace NetworkClient {
 	void send(PacketWrapper& p);
 
 	void shutdown();
-	void processIncomingPackets();
 	void handshake(const std::string& address, int port);
 
 	bool isSetup();
-
+	Client::ID getId();
+    void setId(Client::ID assignedId);
     HandshakeStatus getHandshakeStatus();
     void setHandshakeStatus(HandshakeStatus s);
-
-    void setId(Client::ID assignedId);
-	Client::ID getId();
 }

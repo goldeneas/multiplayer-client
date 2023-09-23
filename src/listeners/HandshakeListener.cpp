@@ -11,6 +11,7 @@ void HandshakeListener::handle(ClientAccepted e) {
     NetworkClient::setId(e.assignedId);
     NetworkClient::setHandshakeStatus(HandshakeStatus::ACCEPTED);
     spdlog::info("Server has accepted our handshake!");
+    spdlog::debug("Our assigned ID is: {}.", e.assignedId);
 }
 
 void HandshakeListener::handle(ClientRefused e) {

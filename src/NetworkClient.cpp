@@ -21,11 +21,7 @@ void NetworkClient::poll() {
 	if(!isSetup())
 		return;
 
-    processIncomingPackets();
-}
-
-void NetworkClient::processIncomingPackets() {
-	sf::Packet p;
+    sf::Packet p;
     sf::Socket::Status receiveStatus;
     unsigned short senderPort;
     sf::IpAddress senderAddress;
@@ -39,23 +35,23 @@ void NetworkClient::processIncomingPackets() {
         return;
     }
 
-	switch(receiveStatus) {
-		case sf::Socket::Done: {
-			EventBus::emit<IncomingPacketPreprocess>(p);
-			PacketType t = PacketProcessor::process(p);
-			spdlog::info("Server sent packet [TYPE: {}]", static_cast<int>(t));
-			break;
-		}
+    switch(receiveStatus) {
+        case sf::Socket::Done: {
+            EventBus::emit<IncomingPacketPreprocess>(p);
+            PacketType t = PacketProcessor::process(p);
+            spdlog::debug("Server sent packet [TYPE: {}]", static_cast<int>(t));
+            break;
+        }
 
-		case sf::Socket::Disconnected:
-			spdlog::warn("Socket receive returned disconnected status. Are we not connected anymore?");
-			shutdown();
-			break;
+        case sf::Socket::Disconnected:
+            spdlog::warn("Socket receive returned disconnected status. Are we not connected anymore?");
+            shutdown();
+            break;
 
-		default:
-			spdlog::error("A packet has been received, but it has an unhandled SFML state!");
-			break;
-	}
+        default:
+            spdlog::error("A packet has been received, but it has an unhandled SFML state!");
+            break;
+    }
 }
 
 void NetworkClient::handshake(const std::string& address, int port) {
