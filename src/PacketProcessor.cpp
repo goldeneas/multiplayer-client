@@ -19,6 +19,8 @@ PacketType PacketProcessor::process(sf::Packet& packet) {
                 EventBus::emit<ClientAccepted>(assignedId);
             else
                 EventBus::emit<ClientRefused>();
+
+            break;
         }
 
         case PacketType::S2C_PLAYERJOIN: {

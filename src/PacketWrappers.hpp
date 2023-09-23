@@ -1,7 +1,9 @@
 #pragma once
+#include "Client.hpp"
 #include "PacketType.hpp"
 
-// TODO: share this
+// TODO: make this shared
+
 struct PacketWrapper {
     sf::Packet rawPacket{};
     PacketType type = PacketType::UNDEFINED;
@@ -16,6 +18,7 @@ struct C2SHandshake : public PacketWrapper {
     std::string clientAddress{};
 
     sf::Packet build() override {
+        rawPacket << type;
         rawPacket << clientAddress;
         rawPacket << clientPort;
 
@@ -30,8 +33,10 @@ struct S2CHandshake : public PacketWrapper {
     bool isHandshakeSuccessful = false;
 
     sf::Packet build() override {
+        rawPacket << type;
         rawPacket << isHandshakeSuccessful;
         rawPacket << assignedId;
+
         return rawPacket;
     }
 };
@@ -42,7 +47,9 @@ struct S2CPlayerJoin : public PacketWrapper {
     Client::ID id = -1;
 
     sf::Packet build() override {
+        rawPacket << type;
         rawPacket << id;
+
         return rawPacket;
     }
 };
@@ -53,7 +60,9 @@ struct S2CPlayerLeave : public PacketWrapper {
     Client::ID id = -1;
 
     sf::Packet build() override {
+        rawPacket << type;
         rawPacket << id;
+
         return rawPacket;
     }
 };

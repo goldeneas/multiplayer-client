@@ -4,16 +4,18 @@
 #include "TitleScreen.hpp"
 #include "NetworkWidget.hpp"
 #include "listeners/ClientSync.hpp"
+#include "listeners/HandshakeListener.hpp"
 
 namespace Game {
     Screen::Context context;
 	ScreenStack screens(context);
 
 	UIRenderer gui;
-}
+}s
 
 void Game::start() {
-	EventBus::registerListener<ClientSync>();
+    EventBus::registerListener<ClientSync>();
+    EventBus::registerListener<HandshakeListener>();
 
 	screens.registerScreen<PlayScreen>(Screen::Type::PLAY);
 	screens.registerScreen<TitleScreen>(Screen::Type::TITLE);
