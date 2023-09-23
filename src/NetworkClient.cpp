@@ -69,8 +69,10 @@ void NetworkClient::handshake(const std::string& address, int port) {
 	status = socket.bind(sf::Socket::AnyPort);
     localPort = socket.getLocalPort();
     localAddress = sf::IpAddress::getLocalAddress();
+    remotePort = port;
+    remoteAddress = address;
 
-	if(status != sf::Socket::Status::Done) {
+	if(status != sf::Socket::Done) {
         reset();
 		spdlog::info("Could not bind socket to {}!", localPort);
 		return;
@@ -79,25 +81,22 @@ void NetworkClient::handshake(const std::string& address, int port) {
     C2SHandshake hs;
     hs.clientPort = localPort;
     hs.clientAddress = localAddress.toString();
-    send(hs, address, port);
-
-    remotePort = port;
-    remoteAddress = address;
+    send(hs);
     handshakeStatus = HandshakeStatus::WAITING;
 
     spdlog::info("Trying to handshake with server at {}:{}...", address, port);
 }
 
-void NetworkClient::send(PacketWrapper& packet, sf::IpAddress address, int port) {
+void NetworkClient::send(PacketWrapper& packet) {
 	if(!isSetup()) {
-		spdlog::warn("Tried sending packet to server, but our client is not ready yet!");
+		spdlog::error("Tried sending packet to server, but our client is not setup yet!");
 		return;
 	}
 
 	spdlog::debug("Sending packet to server. [ID: {}]", static_cast<int>(packet.type));
 
     sf::Packet p = packet.build();
-	socket.send(p, address, port);
+	socket.send(p, remoteAddress, remotePort);
 }
 
 void NetworkClient::shutdown() {
@@ -129,7 +128,7 @@ HandshakeStatus NetworkClient::getHandshakeStatus() {
 }
 
 bool NetworkClient::isSetup() {
-    return status == sf::Socket::Status::Done;
+    return localPort != 0;
 }
 
 void NetworkClient::setId(Client::ID assignedId) {

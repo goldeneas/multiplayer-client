@@ -15,7 +15,7 @@ enum class HandshakeStatus {
 namespace NetworkClient {
 	void poll();
     void reset();
-	void send(PacketWrapper& p, sf::IpAddress address, int port);
+	void send(PacketWrapper& p);
 
 	void shutdown();
 	void processIncomingPackets();
