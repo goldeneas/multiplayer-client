@@ -22,6 +22,8 @@ struct PlayerLeave {
     explicit PlayerLeave(Client::ID id) : id(id) {};
 };
 
+struct IncomingHeartbeatRequest {};
+
 struct IncomingPacketPreprocess {
     sf::Packet& p;
 

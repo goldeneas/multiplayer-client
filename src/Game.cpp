@@ -5,6 +5,7 @@
 #include "NetworkWidget.hpp"
 #include "listeners/ClientSync.hpp"
 #include "listeners/HandshakeListener.hpp"
+#include "listeners/HeartbeatListener.hpp"
 
 namespace Game {
     Screen::Context context;
@@ -16,6 +17,7 @@ namespace Game {
 void Game::start() {
     EventBus::registerListener<ClientSync>();
     EventBus::registerListener<HandshakeListener>();
+    EventBus::registerListener<HeartbeatListener>();
 
 	screens.registerScreen<PlayScreen>(Screen::Type::PLAY);
 	screens.registerScreen<TitleScreen>(Screen::Type::TITLE);

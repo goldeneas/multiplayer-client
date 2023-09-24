@@ -7,4 +7,5 @@
 
 namespace PacketProcessor {
 	PacketType process(sf::Packet& p);
+    PacketType getType(sf::Packet packet);
 };

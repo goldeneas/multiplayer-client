@@ -23,6 +23,11 @@ PacketType PacketProcessor::process(sf::Packet& packet) {
             break;
         }
 
+        case PacketType::S2C_HEARTBEAT: {
+            EventBus::emit<IncomingHeartbeatRequest>();
+            break;
+        }
+
         case PacketType::S2C_PLAYERJOIN: {
             Client::ID id;
             packet >> id;
@@ -43,4 +48,10 @@ PacketType PacketProcessor::process(sf::Packet& packet) {
 	}
 
 	return type;
+}
+
+PacketType PacketProcessor::getType(sf::Packet packet) {
+    PacketType t;
+    packet >> t;
+    return t;
 }

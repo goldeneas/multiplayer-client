@@ -3,7 +3,7 @@
 #include "SFML/Network.hpp"
 #include "EventBus.hpp"
 #include "PacketType.hpp"
-#include "PacketWrappers.hpp"
+#include "IPacketWrapper.hpp"
 
 enum class HandshakeStatus {
     IDLE,
@@ -15,7 +15,7 @@ enum class HandshakeStatus {
 namespace NetworkClient {
 	void poll();
     void reset();
-	void send(PacketWrapper& p);
+	void send(IPacketWrapper& p);
 
 	void shutdown();
 	void handshake(const std::string& address, int port);

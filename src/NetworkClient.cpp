@@ -83,13 +83,13 @@ void NetworkClient::handshake(const std::string& address, int port) {
     spdlog::info("Trying to handshake with server at {}:{}...", address, port);
 }
 
-void NetworkClient::send(PacketWrapper& packet) {
+void NetworkClient::send(IPacketWrapper& packet) {
 	if(!isSetup()) {
 		spdlog::error("Tried sending packet to server, but our client is not setup yet!");
 		return;
 	}
 
-	spdlog::debug("Sending packet to server. [ID: {}]", static_cast<int>(packet.type));
+	spdlog::debug("Sending packet to server.");
 
     sf::Packet p = packet.build();
 	socket.send(p, remoteAddress, remotePort);

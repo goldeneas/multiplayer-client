@@ -74,11 +74,13 @@ add_executable(multiplayer_client
         ${IMGUI_ADDITIONAL_DIR}/imgui-SFML.h
         ${IMGUI_ADDITIONAL_DIR}/imgui_stdlib.h
         ${IMGUI_ADDITIONAL_DIR}/imgui_stdlib.cpp
-        src/PacketWrappers.hpp
-        src/PacketWrappers.hpp
-        src/PacketWrappers.hpp
+        src/IPacketWrapper.hpp
+        src/IPacketWrapper.hpp
+        src/IPacketWrapper.hpp
         src/listeners/HandshakeListener.cpp
         src/listeners/HandshakeListener.hpp
+        src/listeners/HeartbeatListener.cpp
+        src/listeners/HeartbeatListener.hpp
 )
 
 target_link_libraries(multiplayer_client
